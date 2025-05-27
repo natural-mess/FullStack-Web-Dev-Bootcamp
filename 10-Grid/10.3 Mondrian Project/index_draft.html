@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mondrian Project</title>
+  <style>
+    /* 
+    Write your CSS here 
+    Gap Colour: #000
+    White: #F0F1EC
+    Red: #E72F24
+    Black: #232629
+    Blue: #004592
+    Yellow: #F9D01E
+
+    For dimensions, see dimensions.png image.
+    HINT: Remember you can't change the properties of grid lines.
+    But grid lines are transparent!
+    */
+
+    body {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .container {
+      display: grid;
+      grid-template-columns: 320px 9px 198px 9px 153px 9px 50px;
+      grid-template-rows: 414px 9px 130px 10px 155px 9px 20px;
+      background-color: #F0F1EC;
+      width: 748px;
+      height: 748px;
+    }
+
+    .red {
+      background-color: red;
+    }
+
+    .gap {
+      background-color: #000;
+    }
+
+    .empty4 {
+      grid-column: 3 / 8;
+    }
+
+    .row2 {
+      background-color: #000;
+      grid-column: 1 / 8;
+    }
+
+    .empty3 {
+      grid-column: span 3;
+    }
+    
+    .row5 {
+      grid-column: span 5;
+    }
+
+    .row6 {
+      background-color: #000;
+      grid-column: 1 / 7;
+    }
+
+    .blue {
+      background-color: #004592;
+    }
+
+    .yellow {
+      background-color: #F9D01E;
+    }
+
+    .black {
+      background-color: #232629;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Write your HTML here -->
+  <div class="container">
+    <!-- row 1 -->
+    <div class="item red"></div>
+    <div class="item gap"></div>
+    <div class="item empty4"></div>
+
+    <!-- row 2 -->
+    <div class="item row2"></div>
+
+    <!-- row 3 -->
+    <div class="item empty1"></div>
+    <div class="item gap"></div>
+    <div class="item empty3"></div>
+    <div class="item gap"></div>
+    <div class="item blue"></div>
+
+    <!-- row 4 -->
+    <div class="item empty1"></div>
+    <div class="item gap"></div>
+    <div class="item empty3"></div>
+    <div class="item gap"></div>
+    <div class="item gap"></div>
+
+    <!-- row 5 -->
+    <div class="item empty1"></div>
+    <div class="item gap"></div>
+    <div class="item empty3"></div>
+    <div class="item gap"></div>
+    <div class="item empty1"></div>
+
+    <!-- row 6 -->
+    <div class="item row6"></div>
+    <div class="item empty6"></div>
+
+    <!-- row 7 -->
+    <div class="item empty7"></div>
+    <div class="item gap"></div>
+    <div class="item yellow"></div>
+    <div class="item gap"></div>
+    <div class="item black"></div>
+    <div class="item gap"></div>
+    <div class="item empty7"></div>
+  </div>
+</body>
+
+</html>

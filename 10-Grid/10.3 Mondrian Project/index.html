@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mondrian Project</title>
+  <style>
+    /* 
+    Write your CSS here 
+    Gap Colour: #000
+    White: #F0F1EC
+    Red: #E72F24
+    Black: #232629
+    Blue: #004592
+    Yellow: #F9D01E
+
+    For dimensions, see dimensions.png image.
+    HINT: Remember you can't change the properties of grid lines.
+    But grid lines are transparent!
+    */
+
+    body {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      display: grid;
+      grid-template-columns: 320px 198px 153px 50px;
+      grid-template-rows: 414px 130px 155px 20px;
+      background-color: #000;
+      width: 748px;
+      height: 746px; /* 748px */
+      gap: 9px;
+
+    }
+
+    .item {
+      background-color: #F0F1EC;
+    }
+
+    .red {
+      background-color: red;
+    }
+
+    .emptyl3 {
+      grid-column: span 3;
+    }
+
+    .emptyr2 {
+      grid-row: 2 / 4;
+    }
+
+    .emptyr2l2 {
+      grid-area: 2 / 2 / 4 / 4;
+    }
+
+    .emptyl2 {
+      grid-row: span 2;
+    }
+
+    .blue {
+      background-color: #004592;
+      margin-bottom: 10px;
+    }
+
+    .yellow {
+      background-color: #F9D01E;
+    }
+
+    .black {
+      background-color: #232629;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Write your HTML here -->
+  <div class="container">
+    <!-- row 1 -->
+    <div class="item red"></div>
+    <div class="item emptyl3"></div>
+
+    <!-- row 2 -->
+    <div class="item emptyr2"></div>
+    <div class="item emptyr2l2"></div>
+    <div class="item blue"></div>
+
+    <!-- row 3 -->
+    <div class="item emptyl2"></div>
+
+    <!-- row 4 -->
+    <div class="item "></div>
+    <div class="item yellow"></div>
+    <div class="item black"></div>
+  </div>
+</body>
+
+</html>
