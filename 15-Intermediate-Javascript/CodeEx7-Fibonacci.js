@@ -49,19 +49,17 @@ function fibonacciGenerator (n) {
     var output = [];
     if (n === 1)
     {
-        output.push(0);
+        output = [0];
         return output;
     }
     else if (n === 2)
     {
-        output.push(0);
-        output.push(1);
+        output = [0, 1];
         return output;
     }
     else if (n > 2)
     {
-        output.push(0);
-        output.push(1);
+        output = [0, 1];
         while (n > 2)
         {
             output.push(output[output.length-1] + output[output.length-2]);
