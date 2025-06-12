@@ -17,3 +17,4 @@ Full Stack Web Development Bootcamp course provided by App Brewery
 
 - [The Dicee Game](https://natural-mess.github.io/The-Dicee-Game/)
 - [Drum Kit](https://natural-mess.github.io/Drum-Kit)
+- [The Simon Game](https://natural-mess.github.io/The-Simon-Game/)
