@@ -1,0 +1,15 @@
+<%- include("partials/header.ejs") %>
+    <div class="album py-5 bg-body-tertiary">
+        <div class="container">
+            <h1 class="fw-light">Write new blog</h1>
+            <form method="POST" action="/view">
+                <input name="title" type="text" class="feedback-input form-control" placeholder="Title" />
+                <textarea name="text" class="feedback-input form-control" placeholder="Content"></textarea>
+                <input class="my-1" type="submit" value="Submit" />
+            </form>
+            <form method="GET" action="/">
+                <input class="my-1" type="submit" value="Cancel" />
+            </form>
+        </div>
+    </div>
+    <%- include("partials/footer.ejs") %>

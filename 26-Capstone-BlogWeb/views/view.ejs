@@ -1,0 +1,19 @@
+<%- include("partials/header.ejs") %>
+    <div class="album py-5 bg-body-tertiary">
+        <div class="container">
+            <article class="blog-post">
+                <h2 class="display-5 link-body-emphasis mb-1">
+                    <%= locals.data.title %>
+                </h2>
+                <p class="blog-post-meta">
+                    <%= new Date().toLocaleString('en-US', { weekday: 'long' , year: 'numeric' , month: 'long' ,
+                        day: 'numeric' }) %> by <a href="#">Author</a>
+                </p>
+                <p>
+                    <%- locals.data.text %>
+                </p>
+            </article>
+        </div>
+    </div>
+
+    <%- include("partials/footer.ejs") %>

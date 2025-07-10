@@ -1,0 +1,15 @@
+<%- include("partials/header.ejs") %>
+    <div class="album py-5 bg-body-tertiary">
+        <div class="container">
+            <h1 class="fw-light">Are you sure you want to delete this post ?</h1>
+            <form method="POST" action="/delete/<%= id %>">
+                <input name="title" type="text" class="feedback-input form-control" placeholder="Title" value="<%= locals.data.title %>" />
+                <textarea name="text" class="feedback-input form-control" placeholder="Content"><%= locals.data.text.replace(/<br\s*\/?>/g, '\n') %></textarea>
+                <input class="my-1" type="submit" value="Delete" />
+            </form>
+            <form method="GET" action="/">
+                <input class="my-1" type="submit" value="Cancel" />
+            </form>
+        </div>
+    </div>
+    <%- include("partials/footer.ejs") %>

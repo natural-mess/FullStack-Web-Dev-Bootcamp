@@ -1,0 +1,93 @@
+<%- include("partials/header.ejs") %>
+
+    <section class="hero-section text-center">
+        <div class="container py-5">
+            <div class="row py-lg-5">
+                <div class="col-lg-6 col-md-8 mx-auto">
+                    <h1 class="fw-light">My personal blog</h1>
+                    <p class="lead text-body-secondary">Welcome to my personal blog</p>
+                    <p>
+                        <a href="/new" class="btn btn-primary my-2">New blog</a>
+                        <a href="#manage" class="btn btn-secondary my-2">My blogs</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div id="manage" class="album py-5 bg-body-tertiary">
+        <div class="container">
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                <div class="col">
+                    <div class="card shadow-sm">
+                        <!-- <svg aria-label="Placeholder: Thumbnail"
+                            class="bd-placeholder-img card-img-top" height="225" preserveAspectRatio="xMidYMid slice"
+                            role="img" width="100%" xmlns="http://www.w3.org/2000/svg">
+                            <title>Placeholder</title>
+                            <rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef"
+                                dy=".3em">Welcome</text>
+                        </svg> -->
+                        <a href="/">
+                            <img src="https://picsum.photos/300/200?random=1" class="card-img-top" height="225"
+                                style="object-fit: cover;" alt="Blog Thumbnail" />
+                        </a>
+                        <div class="card-body">
+                            <h3 class="card-text">
+                                Welcome
+                            </h3>
+                            <p class="card-text">This is a wider card with supporting text below as a natural
+                                lead-in to additional content. This content is a little bit longer.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                                    <button type="button" class="btn btn-sm btn-outline-secondary">Delete</button>
+                                </div>
+                                <small class="text-body-secondary"><%= moment(new Date()).fromNow(); %></small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <% blogs.forEach(blog=> { %>
+                    <div class="col">
+                        <div class="card shadow-sm">
+                            <!-- <a href="/blog/<%= blog.id %>">
+                                <svg aria-label="Placeholder: Thumbnail" class="bd-placeholder-img card-img-top"
+                                    height="225" preserveAspectRatio="xMidYMid slice" role="img" width="100%"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <title>
+                                        <%= blog.title %>
+                                    </title>
+                                    <rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%"
+                                        fill="#eceeef" dy=".3em">Thumbnail</text>
+                                </svg>
+                            </a> -->
+                            <a href="/blog/<%= blog.id %>">
+                                <img src="https://picsum.photos/300/200?random=1" class="card-img-top" height="225"
+                                    style="object-fit: cover;" alt="Blog Thumbnail" />
+                            </a>
+                            <div class="card-body">
+                                <h3 class="card-text">
+                                    <%= blog.title %>
+                                </h3>
+                                <p class="card-text">This is a wider card with supporting text below as a natural
+                                    lead-in to additional content. This content is a little bit longer.</p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="btn-group">
+                                        <a type="button" class="btn btn-sm btn-outline-secondary"
+                                            href="/blog/<%= blog.id %>">View</a>
+                                        <a type="button" class="btn btn-sm btn-outline-secondary"
+                                            href="/edit/<%= blog.id %>">Edit</a>
+                                        <a type="button" class="btn btn-sm btn-outline-secondary"
+                                            href="/delete/<%= blog.id %>">Delete</a>
+                                    </div>
+                                    <small class="text-body-secondary"><%= moment(new Date()).fromNow(); %></small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <% }) %>
+            </div>
+        </div>
+    </div>
+
+    <%- include("partials/footer.ejs") %>
