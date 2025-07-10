@@ -26,13 +26,13 @@ The goal of this project is to create a Blog web application using Node.js, Expr
 
 ![alt text](demo/cancelDelete.gif)
 
-## Stacks
+## Technologies
 - Node.js
 - Express
 - EJS (Embedded JavaScript templates)
 - Bootstrap 5
-- Multer (for image uploads)
 - Moment.js (for relative time display)
+- UUID
 
 ## Project Structure
 ```
