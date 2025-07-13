@@ -52,7 +52,7 @@ app.get("/basicAuth", async (req, res) => {
         password: yourPassword,
       },
     });
-    res.render("index.ejs", { content: JSON.stringify(result) });
+    res.render("index.ejs", { content: JSON.stringify(response.data) });
   } catch (error) {
     console.error("Failed to make request:", error.message);
     res.render("index.ejs", {
