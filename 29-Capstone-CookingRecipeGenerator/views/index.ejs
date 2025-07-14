@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles/main.css">
+    <title>Cooking recipe generator</title>
+</head>
+
+<body>
+    <div class="container">
+        <form action="/" id="form" class="form" method="POST">
+            <select name="ingredients" class="form-select">
+                <option value="" data-display="Select">Any ingredients</option>
+                <% ingredients.forEach(element=> { %>
+                    <option value="<%= element.strIngredient %>">
+                        <%= element.strIngredient %>
+                    </option>
+                    <% }); %>
+            </select>
+
+            <button type="submit" class="form-submit">Search</button>
+        </form>
+        <section>
+            <% if (locals.data) { %>
+                <h2><%= data.meals[0].strMeal %></h2>
+                <p>Category: <%= data.meals[0].strCategory %></p>
+                <p>Area: <%= data.meals[0].strArea %></p>
+                <p>Type: <%= data.meals[0].strTags %></p>
+                <h3>Ingredients:</h3>
+                <ul>
+                    <% ingredientDetail.forEach(element => { %>
+                        <li><%= element.measure %> <%= element.ingredient %></li>
+                    <% }) %>
+                </ul>
+                <h3>Instructions:</h3>
+                <p><%- data.meals[0].strInstructions.replace(/\r\n|\n/g, "<br>") %></p>
+                <img src="<%= data.meals[0].strMealThumb %>/medium" alt="Food photo">
+                <p><a href="<%= data.meals[0].strYoutube %>">Youtube link</a></p>
+                <p><a href="<%= data.meals[0].strSource %>">Source</a></p>
+            <% } %>
+        </section>
+    </div>
+</body>
+
+</html>
