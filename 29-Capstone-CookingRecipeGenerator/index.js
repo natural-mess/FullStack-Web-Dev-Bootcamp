@@ -24,16 +24,12 @@ const url = "https://www.themealdb.com/api/json/v1/1";
 //   };
 // }
 
-let categories, area, ingredients;
-
 app.get("/", async (req, res) => {
   try {
     // Run all 3 requests at once
-    const response = await axios.get(`${url}/list.php?i=list`);
+    const response = await axios.get(`${url}/list.php?a=list`);
     const data = response.data.meals;
-    console.log(data);
-
-    res.render("index.ejs", {ingredients: data});
+    res.render("index.ejs", {area: data});
   } catch (error) {
     console.error("Failed to fetch data:", error.message);
     res.status(500).send("Error fetching data");
@@ -42,28 +38,26 @@ app.get("/", async (req, res) => {
 
 app.post("/", async (req, res) => {
   try {
-    // ({ categories, area, ingredients } = await getAllOptions());
+    const country = await axios.get(`${url}/list.php?a=list`);
     const response = await axios.get(
-      `${url}/random.php?c=${req.body.categories}&a=${req.body.area}&i=${req.body.ingredients}`
+      `${url}/filter.php?a=${req.body.area}`
     );
-    const meal = response.data.meals[0];
-    let ingredientDetail = [];
-    let count = 1;
-    while (meal[`strIngredient${count}`]) {
-      const ingredient = meal[`strIngredient${count}`];
-      const measure = meal[`strMeasure${count}`];
-      ingredientDetail.push({
-        ingredient,
-        measure,
-      });
-      count++;
-    }
+    const meal = response.data.meals;
+    // let ingredientDetail = [];
+    // let count = 1;
+    // while (meal[`strIngredient${count}`]) {
+    //   const ingredient = meal[`strIngredient${count}`];
+    //   const measure = meal[`strMeasure${count}`];
+    //   ingredientDetail.push({
+    //     ingredient,
+    //     measure,
+    //   });
+    //   count++;
+    // }
+    console.log(meal);
     res.render("index.ejs", {
-      categories,
-      area,
-      ingredients,
-      ingredientDetail,
-      data: response.data,
+      area: country.data.meals,
+      data: meal
     });
   } catch (error) {
     console.error("Failed to fetch data:", error.message);
