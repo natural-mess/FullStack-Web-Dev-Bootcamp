@@ -1,0 +1,42 @@
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%; /* Needed for full-height child */
+  margin: 0;
+  background-image: url("/img/home_bg.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+input {
+  width: 500px;
+  height: 50px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+}
+
+button {
+  width: 100px;
+  height: 50px;
+}

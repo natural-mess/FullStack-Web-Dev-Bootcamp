@@ -1,0 +1,38 @@
+<%- include("partials/header.ejs") %>
+
+    <div>
+        <section>
+            <% if (locals.error) {%>
+                <p>
+                    <%= error %>
+                </p>
+                <% } %>
+                    <% if (locals.data) { %>
+                        <h2>
+                            <%= data.strMeal %>
+                        </h2>
+                        <p>Category: <%= data.strCategory %>
+                        </p>
+                        <p>Area: <%= data.strArea %>
+                        </p>
+                        <p>Type: <%= data.strTags %>
+                        </p>
+                        <h3>Ingredients:</h3>
+                        <ul>
+                            <% ingredientDetail.forEach(element=> { %>
+                                <li>
+                                    <%= element.measure %>
+                                        <%= element.ingredient %>
+                                </li>
+                                <% }); %>
+                        </ul>
+                        <h3>Instructions:</h3>
+                        <p><%- data.strInstructions.replace(/\r\n|\n/g, "<br>" ) %></p>
+                        <img src="<%= data.strMealThumb %>/medium" alt="Food photo">
+                        <p><a href="<%= data.strYoutube %>">Youtube link</a></p>
+                        <p><a href="<%= data.strSource %>">Source</a></p>
+                        <% } %>
+        </section>
+    </div>
+
+    <%- include("partials/footer.ejs") %>

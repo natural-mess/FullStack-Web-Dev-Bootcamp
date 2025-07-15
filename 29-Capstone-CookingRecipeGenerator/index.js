@@ -34,7 +34,6 @@ async function preloadIngredients() {
     console.error("Failed to preload ingredients:", err.message);
   }
 }
-preloadIngredients();
 
 app.get("/", async (req, res) => {
   try {
@@ -52,7 +51,7 @@ app.post("/", async (req, res) => {
     );
     const meal = response.data.meals;
     if (!meal || meal.length === 0) {
-      return res.render("index.ejs", {
+      return res.render("recipe.ejs", {
         ingredients: cachedIngredients,
         ingredientDetail: [],
         data: null,
@@ -73,7 +72,7 @@ app.post("/", async (req, res) => {
       ingredientDetail.push({ ingredient, measure });
       count++;
     }
-    res.render("index.ejs", {
+    res.render("recipe.ejs", {
       ingredients: cachedIngredients,
       ingredientDetail,
       data: mealData,
@@ -84,6 +83,12 @@ app.post("/", async (req, res) => {
   }
 });
 
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
-});
+async function startServer() {
+  await preloadIngredients(); // wait for data to load first
+
+  app.listen(port, () => {
+    console.log(`Server is running on port ${port}`);
+  });
+}
+
+startServer();
