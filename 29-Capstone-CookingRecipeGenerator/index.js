@@ -24,12 +24,21 @@ const url = "https://www.themealdb.com/api/json/v1/1";
 //   };
 // }
 
+let cachedIngredients = [];
+
+async function preloadIngredients() {
+  try {
+    const res = await axios.get(`${url}/list.php?i=list`);
+    cachedIngredients = res.data.meals;
+  } catch (err) {
+    console.error("Failed to preload ingredients:", err.message);
+  }
+}
+preloadIngredients();
+
 app.get("/", async (req, res) => {
   try {
-    // Run all 3 requests at once
-    const response = await axios.get(`${url}/list.php?a=list`);
-    const data = response.data.meals;
-    res.render("index.ejs", {area: data});
+    res.render("index.ejs", { ingredients: cachedIngredients });
   } catch (error) {
     console.error("Failed to fetch data:", error.message);
     res.status(500).send("Error fetching data");
@@ -38,26 +47,36 @@ app.get("/", async (req, res) => {
 
 app.post("/", async (req, res) => {
   try {
-    const country = await axios.get(`${url}/list.php?a=list`);
     const response = await axios.get(
-      `${url}/filter.php?a=${req.body.area}`
+      `${url}/filter.php?i=${req.body.ingredients}`
     );
     const meal = response.data.meals;
-    // let ingredientDetail = [];
-    // let count = 1;
-    // while (meal[`strIngredient${count}`]) {
-    //   const ingredient = meal[`strIngredient${count}`];
-    //   const measure = meal[`strMeasure${count}`];
-    //   ingredientDetail.push({
-    //     ingredient,
-    //     measure,
-    //   });
-    //   count++;
-    // }
-    console.log(meal);
+    if (!meal || meal.length === 0) {
+      return res.render("index.ejs", {
+        ingredients: cachedIngredients,
+        ingredientDetail: [],
+        data: null,
+        error: "No meals found for the given ingredient.",
+      });
+    }
+
+    const randomMeal = Math.floor(Math.random() * meal.length);
+    const selectMeal = await axios.get(
+      `${url}/lookup.php?i=${meal[randomMeal].idMeal}`
+    );
+    const mealData = selectMeal.data.meals[0];
+    let ingredientDetail = [];
+    let count = 1;
+    while (mealData[`strIngredient${count}`]) {
+      const ingredient = mealData[`strIngredient${count}`];
+      const measure = mealData[`strMeasure${count}`];
+      ingredientDetail.push({ ingredient, measure });
+      count++;
+    }
     res.render("index.ejs", {
-      area: country.data.meals,
-      data: meal
+      ingredients: cachedIngredients,
+      ingredientDetail,
+      data: mealData,
     });
   } catch (error) {
     console.error("Failed to fetch data:", error.message);

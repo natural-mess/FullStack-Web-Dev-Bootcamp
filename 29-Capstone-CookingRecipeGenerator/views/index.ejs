@@ -11,26 +11,46 @@
 <body>
     <div class="container">
         <form action="/" id="form" class="form" method="POST">
-            <select name="area" class="form-select">
-                <option value="" data-display="Select">Any country</option>
-                <% area.forEach(element=> { %>
-                    <option value="<%= element.strArea %>">
-                        <%= element.strArea %>
-                    </option>
-                <% }); %>
-            </select>
+            <input type="text" name="ingredients" list="ingredient-list" placeholder="Type an ingredient">
+            <datalist id="ingredient-list">
+                <% ingredients.forEach(ingredient=> { %>
+                    <option value="<%= ingredient.strIngredient %>">
+                        <% }) %>
+            </datalist>
 
             <button type="submit" class="form-submit">Search</button>
         </form>
         <section>
+            <% if (locals.error) {%>
+                <p>
+                    <%= error %>
+                </p>
+             <% } %>
             <% if (locals.data) { %>
-                <div>
-                    <% data.forEach(element => { %>
-                        <h3><%= element.strMeal %></h3>
-                        <img src="<%= element.strMealThumb %>/small" alt="Food photo">
-                    <% }); %>
-                    </div>
-            <% } %>
+                <h2>
+                    <%= data.strMeal %>
+                </h2>
+                <p>Category: <%= data.strCategory %>
+                </p>
+                <p>Area: <%= data.strArea %>
+                </p>
+                <p>Type: <%= data.strTags %>
+                </p>
+                <h3>Ingredients:</h3>
+                <ul>
+                    <% ingredientDetail.forEach(element=> { %>
+                        <li>
+                            <%= element.measure %>
+                                <%= element.ingredient %>
+                        </li>
+                        <% }); %>
+                </ul>
+                <h3>Instructions:</h3>
+                <p><%- data.strInstructions.replace(/\r\n|\n/g, "<br>" ) %></p>
+                <img src="<%= data.strMealThumb %>/medium" alt="Food photo">
+                <p><a href="<%= data.strYoutube %>">Youtube link</a></p>
+                <p><a href="<%= data.strSource %>">Source</a></p>
+                <% } %> 
         </section>
     </div>
 </body>
