@@ -1,15 +1,25 @@
 <%- include("partials/header.ejs") %>
     <div class="container">
-        <form action="/" id="form" class="form" method="POST">
-            <input type="text" name="ingredients" list="ingredient-list" placeholder="Type an ingredient">
-            <datalist id="ingredient-list">
-                <% ingredients.forEach(ingredient=> { %>
-                    <option value="<%= ingredient.strIngredient %>">
-                        <% }) %>
-            </datalist>
+        <div class="title">
+            <h2>Cooking Recipe Generator</h2>
+        </div>
+        <form id="form" class="form" method="POST">
+            <div class="search-bar">
+                <span class="search-icon">
+                    <img src="/img/search-icon.svg" alt="Search" />
+                </span>
+                <input type="text" name="ingredients" list="ingredient-list"
+                    placeholder="Type an ingredient, then select from list">
+                <datalist id="ingredient-list">
+                    <% ingredients.forEach(ingredient=> { %>
+                        <option value="<%= ingredient.strIngredient %>">
+                            <% }) %>
+                </datalist>
+            </div>
+
             <div class="buttons">
-                <button type="submit" class="form-submit">Search</button>
-                <button type="submit" class="form-submit">Random</button>
+                <button type="submit" class="form-submit" formaction="/search">Generate Recipe</button>
+                <button type="submit" class="form-submit" formaction="/random">Random Recipe</button>
             </div>
         </form>
     </div>

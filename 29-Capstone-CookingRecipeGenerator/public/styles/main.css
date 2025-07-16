@@ -5,17 +5,23 @@ html {
 body {
   height: 100%; /* Needed for full-height child */
   margin: 0;
-  background-image: url("/img/home_bg.png");
   background-repeat: no-repeat;
   background-size: cover;
 }
 
+/* index css */
 .container {
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  position: relative;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.title {
+  font-size: 50px;
+  text-align: center;
 }
 
 .form {
@@ -23,11 +29,39 @@ body {
   flex-direction: column;
   align-items: center;
   gap: 10px;
+  position: relative;
 }
 
-input {
+.search-bar {
+  display: flex;
+  align-items: center;
   width: 500px;
-  height: 50px;
+  height: 45px;
+  border: 1px solid #ccc;
+  border-radius: 25px;
+  padding: 0 15px;
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.search-bar .search-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px;
+}
+
+
+.search-bar .search-icon img {
+  width: 20px;
+  height: 20px;
+}
+
+.search-bar input {
+  border: none;
+  outline: none;
+  flex: 1;
+  font-size: 16px;
 }
 
 .buttons {
@@ -37,6 +71,20 @@ input {
 }
 
 button {
-  width: 100px;
-  height: 50px;
+  width: 150px;
+  height: 40px;
+}
+
+/* recipe css */
+.recipe {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+
+section {
+  height: 100vh;
+  width: 500px;
 }
