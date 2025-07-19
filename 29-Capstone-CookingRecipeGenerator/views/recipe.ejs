@@ -1,6 +1,6 @@
 <%- include("partials/header.ejs") %>
 
-    <div class="recipe-container">
+    <div class="section-wrapper">
         <section>
             <% if (locals.error) {%>
                 <p>
@@ -8,13 +8,13 @@
                 </p>
             <% } %>
             <% if (locals.data) { %>
-                <img src="<%= data.strMealThumb %>/medium" alt="Dish photo">
-                <h2>
+                <h1><a href="<%= data.strSource %>">
                     <%= data.strMeal %>
-                </h2>
-                <p>Category: <%= data.strCategory %></p>
-                <p>Area: <%= data.strArea %></p>
-                <p>Type: <%= data.strTags %></p>
+                </a></h1>
+                <img src="<%= data.strMealThumb %>/large" alt="Dish photo">
+                <p class="food-property">Category: <%= data.strCategory %></p>
+                <p class="food-property">Area: <%= data.strArea %></p>
+                <p class="food-property">Type: <%= data.strTags %></p>
                 <h3>Ingredients:</h3>
                 <ul>
                     <% ingredientDetail.forEach(element=> { %>
@@ -26,8 +26,10 @@
                 </ul>
                 <h3>Instructions:</h3>
                 <p><%- data.strInstructions.replace(/\r\n|\n/g, "<br>" ) %></p>
-                <p><a href="<%= data.strYoutube %>">Youtube link</a></p>
-                <p><a href="<%= data.strSource %>">Source</a></p>
+                <h3>Video:</h3>
+                <iframe width="800" height="460" src= "<%= data.strYoutube %>" title="<%= data.strMeal %>" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
             <% } %>
         </section>
     </div>

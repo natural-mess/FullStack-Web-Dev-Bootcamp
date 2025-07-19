@@ -48,6 +48,7 @@ app.post("/search", async (req, res) => {
       ingredientDetail.push({ ingredient, measure });
       count++;
     }
+    mealData.strYoutube = mealData.strYoutube.replace("watch?v=", "embed/");
     res.render("recipe.ejs", {
       ingredientDetail,
       data: mealData,
@@ -70,6 +71,7 @@ app.post("/random", async (req, res) => {
       ingredientDetail.push({ ingredient, measure });
       count++;
     }
+    mealData.strYoutube = mealData.strYoutube.replace("watch?v=", "embed/");
     res.render("recipe.ejs", {
       ingredientDetail,
       data: mealData,

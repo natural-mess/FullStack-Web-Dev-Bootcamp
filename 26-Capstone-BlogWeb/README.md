@@ -77,7 +77,7 @@ npm install
 3. **Run the app**
 
 ```bash
-node index.js
+nodemon index.js
 ```
 
 4. **Visit in browser**

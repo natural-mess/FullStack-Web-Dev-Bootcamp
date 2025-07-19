@@ -3,10 +3,18 @@ html {
 }
 
 body {
-  height: 100%; /* Needed for full-height child */
+  height: 100%;
   margin: 0;
+  background-color: #f7f9fc;
+  background-image: url("/img/home_bg.png");
   background-repeat: no-repeat;
   background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+  height: auto;
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 /* index css */
@@ -22,6 +30,15 @@ body {
 .title {
   font-size: 50px;
   text-align: center;
+  color: #F8F8F8;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+}
+
+h2 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-family: 'Lora', serif;
+  font-weight: 700;
 }
 
 .form {
@@ -76,15 +93,46 @@ button {
 }
 
 /* recipe css */
-.recipe {
-  height: 100vh;
+.section-wrapper {
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: row;
+  padding: 50px 0; /* optional: keeps some breathing room on very small screens */
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  line-height: 1.6; /* Good for readability */
 }
 
 section {
-  height: 100vh;
-  width: 500px;
+  max-width: 800px;
+  /* margin: 50px auto; */
+  background-color: #fff;
+  padding: 20px 40px;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+}
+
+section h1{
+  font-size: xx-large;
+}
+
+section h1,
+section img,
+.food-property,
+iframe{
+  margin-left: auto;
+  margin-right: auto;
+}
+
+p,
+h3,
+ul {
+  margin-bottom: 0;
+}
+
+iframe{
+  margin-top: 16px;
 }
