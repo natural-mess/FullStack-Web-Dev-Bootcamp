@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Note</title>
+    <link rel="stylesheet" href="/styles/main.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>
+            <%= heading %>
+        </h1>
+        <% if (locals.error) { %>
+            <p style="color:red;">
+                <%= error %>
+            </p>
+            <form id="newPostForm" method="post" action="/new">
+                <input type="text" name="isbn" placeholder="ISBN" value="<%=temp_book.isbn %>" required>
+                <input type="text" name="bookName" placeholder="Book name" value="<%=temp_book.name %>" required>
+                <input type="text" name="author" placeholder="Author" value="<%=temp_book.author %>" required>
+                <input type="number" name="rating" placeholder="Rating (1 to 5)" min="1" max="5" value="<%=temp_book.rating %>" required>
+                <textarea name="note" placeholder="Note" required rows="20"><%=temp_book.note %></textarea>
+                <button class="full-width" type="submit">
+                    <%= submit %>
+                </button>
+            </form>
+        <% } else {%>
+            <% if (locals.book) { %>
+                <form id="newPostForm" method="post" action="/edit/<%=book.id %>">
+                    <input type="text" name="isbn" placeholder="ISBN" value="<%=book.isbn %>" required>
+                    <input type="text" name="bookName" placeholder="Book name" value="<%=book.name %>" required>
+                    <input type="text" name="author" placeholder="Author" value="<%=book.author %>" required>
+                    <input type="number" name="rating" placeholder="Rating (1 to 5)" min="1" max="5" value="<%=book.rating %>" required>
+                    <textarea name="note" placeholder="Note" required rows="20"><%=book.note %></textarea>
+                    <button class="full-width" type="submit">
+                        <%= submit %>
+                    </button>
+                </form>
+            <% } else {%>
+                <form id="newPostForm" method="post" action="/new">
+                    <input type="text" name="isbn" placeholder="ISBN" required>
+                    <input type="text" name="bookName" placeholder="Book name" required>
+                    <input type="text" name="author" placeholder="Author" required>
+                    <input type="number" name="rating" min="1" max="5" required>
+                    <textarea name="note" placeholder="Note" required rows="20"></textarea>
+                    <button class="full-width" type="submit">
+                        <%= submit %>
+                    </button>
+                </form>
+            <% } %>
+        <% } %>
+        <form method="GET" action="/">
+            <input class="my-1" type="submit" value="Cancel" />
+        </form>
+    </div>
+</body>
+
+</html>

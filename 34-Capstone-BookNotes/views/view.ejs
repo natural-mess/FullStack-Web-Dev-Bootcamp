@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Note</title>
+    <link rel="stylesheet" href="/styles/main.css">
+</head>
+
+<body>
+    <div class="container">
+        <ul id="booksList">
+            <li class="book-item">
+                <img src="https://covers.openlibrary.org/b/isbn/<%= book.isbn %>-M.jpg" alt="Cover of <%= book.name %>" class="cover">
+
+                <div class="info">
+                    <h1>
+                        <a class="view" href="/view/<%= book.id %>"><%= book.name %></a>
+                    </h1>
+                    <small>Author: <%= book.author %></small>
+                    <small>ISBN: <%= book.isbn %></small>
+                    <small>Date read: <%= book.date %></small>
+                    <small>Rating: <%= book.rating %> / 5</small>
+                </div>
+            </li>
+        </ul>
+        <p>
+            <%-book.note.replace(/\r\n|\n/g, "<br>" ) %>
+        </p>
+        <a class="edit" href="/edit/<%= book.id %>">Edit</a>
+        <a class="delete" href="/delete/<%= book.id %>">Delete</a>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Notes</title>
+    <link rel="stylesheet" href="/styles/main.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Welcome to my Book Notes</h1>
+        <a id="newPostBtn" href="/new">New Note</a>
+        <div class="sort">
+            <small>
+                <a class="sortBtn" href="/?sort=title">Sort by Title</a>
+                <a class="sortBtn" href="/?sort=recency">Sort by Recency</a>
+                <a class="sortBtn" href="/?sort=rating">Sort by Best Rating</a>
+                <a class="sortBtn" href="/?sort=lastUpdate">Sort by Recent Update</a>
+            </small>
+        </div>
+        <ul id="booksList">
+            <% books.forEach(book=> { %>
+                <li class="book-item">
+                    <img src="https://covers.openlibrary.org/b/isbn/<%= book.isbn %>-M.jpg" alt="Cover of <%= book.name %>" class="cover">
+
+                    <div class="info">
+                        <h2><a class="view" href="/view/<%= book.id %>">
+                                <%= book.name %>
+                            </a></h2>
+                        <small>Author: <%= book.author %></small>
+                        <small>Date read: <%= book.date %></small>
+                        <small>Rating: <%= book.rating %>/5</small>
+
+                        <p>
+                            <%= book.note.substring(0,200) + "..." %>
+                        </p>
+
+                        <a class="edit" href="/edit/<%= book.id %>">Edit</a>
+                        <a class="delete" href="/delete/<%= book.id %>">Delete</a>
+                    </div>
+                </li>
+            <% }); %>
+        </ul>
+
+    </div>
+
+</body>
+
+</html>

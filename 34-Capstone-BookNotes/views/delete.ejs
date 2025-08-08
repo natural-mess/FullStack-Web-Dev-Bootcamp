@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete note</title>
+    <link rel="stylesheet" href="/styles/main.css">
+</head>
+<body>
+    <div class="container">
+        <h1>
+            <%= heading %>
+        </h1>
+        <p>Are you sure you want to permanently delete note for <%=bookName %> ?</p>
+        <form method="POST" action="/delete/<%= bookId %>">
+            <input class="my-1" type="submit" value="Yes" />
+        </form>
+        <form method="GET" action="/">
+            <input class="my-1" type="submit" value="No" />
+        </form>
+    </div>
+</body>
+</html>
