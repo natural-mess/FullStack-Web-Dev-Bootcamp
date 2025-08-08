@@ -31,12 +31,8 @@ db.connect();
 
 // Initialize array for all book notes
 var books = [];
-
-// Type of sorting notes
-// 1 : sort by title
-// 2 : sort by recency
-// 3 : sort by best rating
-var error="";
+var error = "";
+var errorEdit = "";
 var temp_book = {};
 
 // Get data from db
@@ -73,11 +69,6 @@ app.get("/", async (req, res) => {
   }
 });
 
-// Sorting notes
-app.get("/book", async (req, res) => {
-  console.log(req.query);
-});
-
 // Create new book note
 // If ISBN is invalid, website will ask user to correct ISBN
 app.get("/new", (req, res) => {
@@ -86,7 +77,7 @@ app.get("/new", (req, res) => {
       heading: "New Note",
       submit: "Create Note",
       error,
-      temp_book
+      temp_book,
     });
     error = "";
     temp_book = "";
@@ -117,11 +108,11 @@ app.post("/new", async (req, res) => {
     } catch (err) {
       console.log(err);
     }
-  } catch(err) {
+  } catch (err) {
     // console.log(err);
     // ISBN is invalid
     error = "ISBN not found";
-    temp_book = {isbn, name, author, rating, note};
+    temp_book = { isbn, name, author, rating, note };
     console.log(temp_book);
     res.redirect("/new");
   }
@@ -143,23 +134,37 @@ app.get("/view/:id", async (req, res) => {
 });
 
 // Fetch current data from selected book note for editing
+// If ISBN is invalid, website will ask user to correct ISBN
 app.get("/edit/:id", async (req, res) => {
-  try {
-    const result = await db.query("SELECT * FROM books WHERE id = $1", [
-      req.params.id,
-    ]);
-    var book = result.rows[0];
+  if (errorEdit.length > 0) {
+    var book = temp_book;
     res.render("new.ejs", {
       book,
       heading: "Edit Note",
       submit: "Update Note",
+      errorEdit,
     });
-  } catch (err) {
-    console.log(err);
+    errorEdit = "";
+    temp_book = "";
+  } else {
+    try {
+      const result = await db.query("SELECT * FROM books WHERE id = $1", [
+        req.params.id,
+      ]);
+      var book = result.rows[0];
+      res.render("new.ejs", {
+        book,
+        heading: "Edit Note",
+        submit: "Update Note",
+      });
+    } catch (err) {
+      console.log(err);
+    }
   }
 });
 
 // Edit book note and update database
+// If ISBN is invalid, website will ask user to correct ISBN
 app.post("/edit/:id", async (req, res) => {
   var isbn = req.body.isbn;
   var name = req.body.bookName;
@@ -168,13 +173,22 @@ app.post("/edit/:id", async (req, res) => {
   var note = req.body.note;
   var bookId = req.params.id;
   try {
-    await db.query(
-      "UPDATE books SET isbn = $1, name = $2, author = $3, rating = $4, note = $5, updated_at = NOW() WHERE id = $6;",
-      [isbn, name, author, rating, note, bookId]
-    );
-    res.redirect("/");
+    await axios.get(`${API_URL}/${isbn}-M.jpg?default=false`);
+    try {
+      await db.query(
+        "UPDATE books SET isbn = $1, name = $2, author = $3, rating = $4, note = $5, updated_at = NOW() WHERE id = $6;",
+        [isbn, name, author, rating, note, bookId]
+      );
+      res.redirect("/");
+    } catch (err) {
+      console.log(err);
+    }
   } catch (err) {
-    console.log(err);
+    // ISBN is invalid
+    errorEdit = "ISBN not found";
+    temp_book = { isbn, name, author, rating, note, id:bookId };
+    // console.log(temp_book);
+    res.redirect(`/edit/${bookId}`);
   }
 });
 

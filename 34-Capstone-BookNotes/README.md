@@ -60,16 +60,18 @@ A web app for saving and managing notes while reading books.
 
 ## Usage
 
-- Visit the homepage to view all book notes.
-- Click "New Note" to add a new book note.
-<video controls src="demo/new.mp4" title=""></video>
+- Click "New Note" to add a new book note.  
+  ![Demo: Add New Note](demo/new.gif)
 
-- Edit or delete notes using the respective buttons.
-<video controls src="demo/edit.mp4" title="Title"></video>
-<video controls src="demo/delete.mp4" title="Title"></video>
-- Sort notes using the provided sort options.
-<video controls src="demo/sort.mp4" title="Title"></video>
+- Edit or delete notes using the respective buttons.  
+  ![Demo: Edit Note](demo/edit.gif)  
+  ![Demo: Delete Note](demo/delete.gif)
 
+- Sort notes using the provided sort options.  
+  ![Demo: Sort Notes](demo/sort.gif)
+
+- ISBN is checked to ensure book is valid, otherwise, prompt user to type ISBN until it's correct  
+  ![Demo: ISBN Check](demo/ISBNCheck.gif)
 ## API Reference
 
 - Book cover images are fetched from [Open Library Covers API](https://openlibrary.org/dev/docs/api/covers).
