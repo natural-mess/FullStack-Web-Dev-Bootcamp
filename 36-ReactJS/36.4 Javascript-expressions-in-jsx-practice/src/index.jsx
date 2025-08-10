@@ -1,7 +1,11 @@
 //Create a react app from scratch.
-//It should display a h1 heading.
-//It should display an unordered list (bullet points).
-//It should contain 3 list elements.
+//It should display 2 paragraph HTML elements.
+//The paragraphs should say:
+//Created by YOURNAME.
+//Copyright CURRENTYEAR.
+//E.g.
+//Created by Angela Yu.
+//Copyright 2019.
 
 // If you're running this locally in VS Code use the commands:
 // npm install
@@ -12,14 +16,13 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
+const name = "Rocky";
+const currYear = new Date().getFullYear();
+
 ReactDOM.render(
     <div>
-        <h1>Three cities of France</h1>
-        <ul>
-            <li>Paris</li>
-            <li>Lyon</li>
-            <li>Nice</li>
-        </ul>
+        <p>Created by {name}</p>
+        <p>Copyright {currYear}</p>
     </div>,
     document.getElementById("root")
 );
