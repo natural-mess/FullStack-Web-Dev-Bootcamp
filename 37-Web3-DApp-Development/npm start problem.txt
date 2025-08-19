@@ -1,0 +1,18 @@
+Replace by this in package.json
+"devDependencies": {
+    "@dfinity/agent": "0.15.2",
+    "@dfinity/candid": "0.15.2",
+    "@dfinity/principal": "0.15.2",
+    "assert": "2.0.0",
+    "buffer": "6.0.3",
+    "copy-webpack-plugin": "^9.0.1",
+    "events": "3.3.0",
+    "html-webpack-plugin": "5.5.0",
+    "process": "0.11.10",
+    "stream-browserify": "3.0.0",
+    "terser-webpack-plugin": "5.2.5",
+    "util": "0.12.4",
+    "webpack": "5.99.7",
+    "webpack-cli": "5.0.0",
+    "webpack-dev-server": "^4.4.0"
+  },
